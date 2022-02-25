@@ -47,7 +47,7 @@ const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
                 </a>
               </li> */}
             </ul>
-            <form className="d-flex" onSubmit={handleSubmit}>
+            <form className="search-form d-flex" onSubmit={handleSubmit}>
               <input
                 className="search form-control me-2"
                 type="search"

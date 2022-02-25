@@ -2,13 +2,14 @@
 // $body-bg: #000;
 
 // Nav
+
+.navbar {
+  backdrop-filter: saturate(180%) blur(20px);
+}
 .nav-bg {
-  background-color: rgba(#000000, 0.4);
+  background-color: rgba(#000000, 0.2);
 }
 
-.search {
-  background-color: red;
-}
 // Home
 .carousel img {
   height: 100vh;

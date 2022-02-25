@@ -25,10 +25,11 @@ const Slider = () => {
                 className="d-block w-100"
                 alt={item.name || item.title}
               />
-              {/* <div className="carousel-caption d-none d-md-block">
+
+              <div className="carousel-caption d-none d-md-block">
                 <h5>{item.name || item.title}</h5>
                 <p>{item.overview}</p>
-              </div> */}
+              </div>
             </div>
           ))}
         </div>

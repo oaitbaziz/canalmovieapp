@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { RouteComponentProps, useLocation, withRouter } from "react-router-dom";
-import * as qs from "query-string";
+import React, { useState } from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
 interface Props {
   history: object;
@@ -8,14 +7,6 @@ interface Props {
 
 const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
   const [value, setValue] = useState("");
-
-  const location = useLocation();
-  const queries = qs.parse(location.search);
-  const { q } = queries;
-
-  useEffect(() => {
-    console.log("query", q);
-  });
 
   const handleChange = (e: {
     target: { value: React.SetStateAction<string> };
@@ -32,8 +23,8 @@ const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
   };
   return (
     <header>
-      <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div className="container-fluid">
+      <nav className="navbar navbar-expand-md navbar-dark fixed-top nav-bg">
+        <div className="container">
           <a className="navbar-brand" href="/">
             Canal
           </a>
@@ -58,7 +49,7 @@ const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
             </ul>
             <form className="d-flex" onSubmit={handleSubmit}>
               <input
-                className="form-control me-2"
+                className="search form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"

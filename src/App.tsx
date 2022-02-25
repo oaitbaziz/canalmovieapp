@@ -7,17 +7,15 @@ import Error from "pages/Error";
 
 function App() {
   return (
-    <main>
-      <BrowserRouter>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="search" component={Search} />
-          <Route exact path="error" component={Error} />
-          <Route component={Notfound} />
-        </Switch>
-      </BrowserRouter>
-    </main>
+    <BrowserRouter>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/search" component={Search} />
+        <Route exact path="/error" component={Error} />
+        <Route component={Notfound} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

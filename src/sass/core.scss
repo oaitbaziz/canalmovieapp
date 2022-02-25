@@ -1,10 +1,23 @@
 // Override default variables before the import
 // $body-bg: #000;
 
+// Nav
+.nav-bg {
+  background-color: rgba(#000000, 0.4);
+}
+
+.search {
+  background-color: red;
+}
 // Home
 .carousel img {
   height: 100vh;
   object-fit: cover;
+}
+
+// Search
+.search-page {
+  padding: 7rem 0;
 }
 
 // Import Bootstrap and its default variables

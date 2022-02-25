@@ -11,14 +11,17 @@ const Slider = () => {
     <div className="carousel-wrapper">
       <div
         id="home-carousel"
-        className="carousel slide"
+        className="carousel slide carousel-fade"
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
           {data.map((item, index) => (
-            <div className={`carousel-item ${index === 0 ? "active" : ""}`}>
+            <div
+              className={`carousel-item ${index === 0 ? "active" : ""}`}
+              key={item.id}
+            >
               <img
-                src={`${config.cdnUrl}${item.backdrop_path}`}
+                src={`${config.cdnFullWidth}${item.backdrop_path}`}
                 className="d-block w-100"
                 alt={item.name || item.title}
               />

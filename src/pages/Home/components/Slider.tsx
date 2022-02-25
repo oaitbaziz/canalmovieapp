@@ -1,12 +1,19 @@
 import React from "react";
 
-import { trending } from "data";
 import config from "config";
 
-const Slider = () => {
-  const data = trending.results.filter(
-    ({ media_type }) => media_type === "movie" || media_type === "tv"
-  );
+interface ItemShape {
+  id: number;
+  name?: string;
+  title?: string;
+  overview: string;
+  backdrop_path: string;
+}
+interface Props {
+  data: ItemShape[];
+}
+
+const Slider: React.FC<Props> = ({ data }) => {
   return (
     <div className="carousel-wrapper">
       <div
@@ -15,20 +22,20 @@ const Slider = () => {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
-          {data.map((item, index) => (
+          {data.map(({ id, backdrop_path, name, title, overview }, index) => (
             <div
               className={`carousel-item ${index === 0 ? "active" : ""}`}
-              key={item.id}
+              key={id}
             >
               <img
-                src={`${config.cdnFullWidth}${item.backdrop_path}`}
+                src={`${config.cdnFullWidth}${backdrop_path}`}
                 className="d-block w-100"
-                alt={item.name || item.title}
+                alt={name || title}
               />
 
               <div className="carousel-caption d-none d-md-block">
-                <h5>{item.name || item.title}</h5>
-                <p>{item.overview}</p>
+                <h5>{name || title}</h5>
+                <p>{overview}</p>
               </div>
             </div>
           ))}

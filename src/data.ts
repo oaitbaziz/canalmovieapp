@@ -1,4 +1,7 @@
-export const trending = {
+const filterMoviesAndSeries = ({ media_type = "" }) =>
+  media_type === "movie" || media_type === "tv";
+
+const trendingWeeklyUnfiltred = {
   page: 1,
   results: [
     {
@@ -361,7 +364,7 @@ export const trending = {
   total_results: 20000,
 };
 
-export const searchResult = {
+const searchResultUnfiltred = {
   page: 1,
   results: [
     {
@@ -691,3 +694,12 @@ export const searchResult = {
   total_pages: 5,
   total_results: 88,
 };
+
+const trendingWeekly = trendingWeeklyUnfiltred.results.filter(
+  filterMoviesAndSeries
+);
+const searchResults = searchResultUnfiltred.results.filter(
+  filterMoviesAndSeries
+);
+
+export { trendingWeekly, searchResults };

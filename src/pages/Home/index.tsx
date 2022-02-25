@@ -1,14 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import apiInstance from "service/api";
 import Slider from "./components/Slider";
-import { trendingWeekly } from "data";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTrending } from "redux/home/homeActions";
+import { RootState } from "redux/store";
 
 const Home: React.FC = () => {
-  useEffect(() => {
-    apiInstance.getWeeklyTrending();
-  });
+  const dispatch = useDispatch();
 
-  const data = trendingWeekly;
+  const fetchData = () => {
+    dispatch(fetchTrending());
+  };
+
+  const { loading, error, data } = useSelector(
+    (state: RootState) => state.home
+  );
+
+  useEffect(() => {
+    fetchData();
+  }, [loading, error]);
 
   return (
     <main>

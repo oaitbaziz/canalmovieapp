@@ -35,7 +35,7 @@ const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
-            Carousel
+            Canal
           </a>
           <button
             className="navbar-toggler"

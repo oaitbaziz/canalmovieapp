@@ -32,7 +32,7 @@ $input-color: #212529;
 // @import "~bootstrap/scss/accordion";
 // @import "~bootstrap/scss/breadcrumb";
 // @import "~bootstrap/scss/pagination";
-// @import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/badge";
 // @import "~bootstrap/scss/alert";
 // @import "~bootstrap/scss/progress";
 // @import "~bootstrap/scss/list-group";
@@ -284,6 +284,12 @@ a {
     border-radius: 12px;
     margin-right: 2rem;
     flex-shrink: 0;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
 
     @include media-breakpoint-down(md) {
       margin-right: 0;

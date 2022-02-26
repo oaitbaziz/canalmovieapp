@@ -79,13 +79,18 @@ const Searchbar: React.FC = () => {
           {data?.length ? (
             <div className="autocomplete__list">
               {bestResults?.map((item: ItemShape) => (
-                <Link to={`/details/${item.id}`}>
+                <Link to={`/details/${item.media_type}/${item.id}`}>
                   <div className="autocomplete__item" key={item.id}>
                     <p className="fw-bold d-inline">
                       {item.name || item.title}
                     </p>{" "}
-                    , {item.media_type === "movie" ? "Film" : "Série"},{" "}
-                    {`${item.vote_average * 10}%`}
+                    -{" "}
+                    {item.media_type === "movie" ? (
+                      <span className="badge bg-dark">Film</span>
+                    ) : (
+                      <span className="badge bg-danger">Série</span>
+                    )}
+                    {/* , {`${item.vote_average * 10}%`} */}
                   </div>
                 </Link>
               ))}

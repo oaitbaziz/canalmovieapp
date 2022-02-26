@@ -27,9 +27,23 @@ const apiInstance = () => {
     return api.get("/search/multi", { params });
   };
 
+  // Details
+  interface DetailsParams {
+    id: string;
+  }
+
+  const getDetails = (params: DetailsParams, type: string) => {
+    const uri = type === "movie" ? "/movie" : "/tv";
+
+    return api.get(`${uri}/${params.id}`, {
+      params: { append_to_response: "videos" },
+    });
+  };
+
   return {
     getWeeklyTrending,
     getSearchResults,
+    getDetails,
   };
 };
 

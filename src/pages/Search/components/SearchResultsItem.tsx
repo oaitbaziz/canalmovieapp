@@ -8,6 +8,7 @@ interface Props {
   name?: string;
   title?: string;
   poster_path?: string | null;
+  media_type: string;
 }
 
 const SearchResultsItem: React.FC<Props> = ({
@@ -15,12 +16,13 @@ const SearchResultsItem: React.FC<Props> = ({
   poster_path,
   name,
   title,
+  media_type,
 }) => {
   const history = useHistory();
   const src = poster_path ? `${config.cdnPosters}${poster_path}` : noCover;
 
   const handleRedirect = () => {
-    history.push(`/details/${id}`);
+    history.push(`/details/${media_type}/${id}`);
   };
 
   return (

@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 
 import homeReducer from "./home/homeReducer";
 import searchReducer from "./search/searchReducer";
+import movieDetailsReducer from "./movieDetails/movieDetailsReducer";
 
 const rootReducer = combineReducers({
   home: homeReducer,
   search: searchReducer,
+  details: movieDetailsReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

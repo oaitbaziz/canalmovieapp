@@ -222,7 +222,7 @@ a {
   }
 
   @include media-breakpoint-down(sm) {
-    --movie-card-gutter: 1rem;
+    --movie-card-gutter: 2rem;
     --movie-card-width: calc((100% / 2) - var(--movie-card-gutter));
   }
 }

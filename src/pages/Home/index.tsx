@@ -41,8 +41,7 @@ const Home: React.FC = () => {
       <div className="page-wrap home-page">
         <div className="wlc-card">
           <h2 className="wlc-card__title">
-            Retrouvez un choix illimités de films, séries et émissions
-            télévisées
+            Retrouvez un choix illimité de films, séries et émissions télévisées
           </h2>
           <Searchbar />
         </div>

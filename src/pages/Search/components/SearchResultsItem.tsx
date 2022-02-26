@@ -1,6 +1,7 @@
 import React from "react";
 import config from "config";
 import noCover from "assets/img/no_cover.jpg";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   id: number;
@@ -15,9 +16,15 @@ const SearchResultsItem: React.FC<Props> = ({
   name,
   title,
 }) => {
+  const history = useHistory();
   const src = poster_path ? `${config.cdnPosters}${poster_path}` : noCover;
+
+  const handleRedirect = () => {
+    history.push(`/details/${id}`);
+  };
+
   return (
-    <div className="movie-card" key={id}>
+    <div className="movie-card" key={id} onClick={handleRedirect}>
       <div className="movie-card__thumb">
         <img src={src} alt={name || title} className="card-img" />
       </div>

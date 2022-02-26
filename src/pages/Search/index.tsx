@@ -13,8 +13,7 @@ const Search: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const q = useQuery();
-  const query = q.get("q") || "";
+  const query = useQuery().get("q") || "";
 
   const { data, loading, error, totalPages, page, loadingMore } = useSelector(
     (state: RootState) => state.search
@@ -55,7 +54,7 @@ const Search: React.FC = () => {
     <div className="page-wrap search-page">
       <div className="container" ref={infiniteRef}>
         <h1 className="h2 pb-2 pb-md-3">
-          Votre résultat de recherche pour {`"${q.get("q")}"`}
+          Votre résultat de recherche pour {`"${query}"`}
         </h1>
         <SearchResultsContainer data={data} />
       </div>

@@ -21,7 +21,6 @@ const searchReducer = (
         ...action.payload,
       };
     case RESET_SEARCH:
-      console.log("RESET_SEARCH");
       return initialState;
     default:
       return state;

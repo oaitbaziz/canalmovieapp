@@ -17,7 +17,6 @@ const Searchbar: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [value, setValue] = useState("");
-  console.log("value: ", value, value.length);
   const { data } = useSelector((state: RootState) => state.search);
 
   // Show only pertinant results

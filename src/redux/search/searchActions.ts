@@ -6,7 +6,6 @@ import apiInstance from "service/api";
 // Action generator
 export const fetchSearch = (query: string) => {
   return function fetchSearchThunk(dispatch: AppDispatch) {
-    console.log("fetchSearch");
     // Loading
     dispatch({
       type: FETCH_SEARCH,
@@ -19,7 +18,7 @@ export const fetchSearch = (query: string) => {
         if (response.data.results.length) {
           // HTTP 200
           // Filter only movies & series
-          const data = response.data.results;
+          const data = response.data.results.filter(filterMoviesAndSeries);
           dispatch({
             type: FETCH_SEARCH,
             payload: {
@@ -67,7 +66,6 @@ export const fetchSeachPage = (query: string) => {
     dispatch: AppDispatch,
     getState: () => { search: any }
   ) {
-    console.log("fetchSeachNextPage");
     // Loading
     dispatch({
       type: FETCH_SEARCH,
@@ -75,7 +73,6 @@ export const fetchSeachPage = (query: string) => {
     });
     const state = getState();
     const { search } = state;
-    console.log("search: ", search);
 
     // Get search results
     const res = apiInstance.getSearchResults({ query, page: search.page });
@@ -84,8 +81,7 @@ export const fetchSeachPage = (query: string) => {
         if (response.data.results.length) {
           // HTTP 200
           // Filter only movies & series
-          const data = response.data.results;
-          console.log(" fetchSeachPage data: ", data);
+          const data = response.data.results.filter(filterMoviesAndSeries);
           dispatch({
             type: FETCH_SEARCH,
             payload: {

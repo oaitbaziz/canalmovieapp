@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { fetchSearch } from "redux/search/searchActions";
 import { RESET_SEARCH } from "redux/search/searchTypes";
 import { RootState } from "redux/store";
@@ -17,6 +17,7 @@ const Searchbar: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [value, setValue] = useState("");
+  console.log("value: ", value, value.length);
   const { data } = useSelector((state: RootState) => state.search);
 
   // Show only pertinant results
@@ -28,6 +29,11 @@ const Searchbar: React.FC = () => {
   // Autofocus input field
   useEffect(() => {
     inputRef.current?.focus();
+
+    // Clear search results
+    if (data.length && !value.length) {
+      dispatch({ type: RESET_SEARCH });
+    }
   });
 
   // Request
@@ -44,11 +50,6 @@ const Searchbar: React.FC = () => {
     // Fetch results
     if (e.target.value.length >= 2) {
       fetchData();
-    }
-
-    // onClear
-    if (data.lenght && !value.length) {
-      dispatch({ type: RESET_SEARCH });
     }
   };
 
@@ -76,15 +77,21 @@ const Searchbar: React.FC = () => {
             aria-label="search"
             onChange={handleChange}
           />
-          <div className="autocomplete__list">
-            {bestResults?.map((item: ItemShape) => (
-              <div className="autocomplete__item" key={item.id}>
-                <p className="fw-bold d-inline">{item.name || item.title}</p> ,{" "}
-                {item.media_type === "movie" ? "Film" : "Série"},{" "}
-                {`${item.vote_average * 10}%`}
-              </div>
-            ))}
-          </div>
+          {data?.length ? (
+            <div className="autocomplete__list">
+              {bestResults?.map((item: ItemShape) => (
+                <Link to={`/details/${item.id}`}>
+                  <div className="autocomplete__item" key={item.id}>
+                    <p className="fw-bold d-inline">
+                      {item.name || item.title}
+                    </p>{" "}
+                    , {item.media_type === "movie" ? "Film" : "Série"},{" "}
+                    {`${item.vote_average * 10}%`}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </div>
         <button className="btn btn-primary" type="submit">
           Rechercher

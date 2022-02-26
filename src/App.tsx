@@ -17,7 +17,7 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/search" component={Search} />
-          <Route exact path="/detail/:id" component={MovieDetails} />
+          <Route exact path="/details/:id" component={MovieDetails} />
           <Route exact path="/error" component={Error} />
           <Route component={Notfound} />
         </Switch>

@@ -20,7 +20,12 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, [loading, error, fetchData]);
+  }, [fetchData]);
+
+  if (error) {
+    history.push("/error");
+    return <></>;
+  }
 
   if (loading) {
     return (
@@ -28,11 +33,6 @@ const Home: React.FC = () => {
         <Loading />
       </main>
     );
-  }
-
-  if (error) {
-    history.push("/error");
-    return <></>;
   }
 
   return (

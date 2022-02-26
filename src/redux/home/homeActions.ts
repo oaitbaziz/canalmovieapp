@@ -10,10 +10,11 @@ export function fetchTrending() {
       payload: { loading: true, error: false },
     });
 
-    try {
-      const res = apiInstance.getWeeklyTrending();
+    // Fetch data
+    const res = apiInstance.getWeeklyTrending();
 
-      res.then((response) => {
+    res
+      .then((response) => {
         if (response.data.results.length) {
           dispatch({
             type: FETCH_TRENDING,
@@ -31,21 +32,22 @@ export function fetchTrending() {
             },
           });
         }
+      })
+      .catch(() => {
+        dispatch({
+          type: FETCH_TRENDING,
+          payload: {
+            error: true,
+          },
+        });
+      })
+      .finally(() => {
+        dispatch({
+          type: FETCH_TRENDING,
+          payload: {
+            loading: false,
+          },
+        });
       });
-    } catch (error) {
-      dispatch({
-        type: FETCH_TRENDING,
-        payload: {
-          error: true,
-        },
-      });
-    } finally {
-      dispatch({
-        type: FETCH_TRENDING,
-        payload: {
-          loading: false,
-        },
-      });
-    }
   };
 }

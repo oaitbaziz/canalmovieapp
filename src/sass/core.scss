@@ -32,11 +32,12 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(#000000, 0.95);
+  background-color: rgba(#000000, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
+  backdrop-filter: saturate(180%) blur(20px);
 
   &__content {
     margin: 0 auto;

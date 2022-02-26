@@ -1,5 +1,4 @@
-const filterMoviesAndSeries = ({ media_type = "" }) =>
-  media_type === "movie" || media_type === "tv";
+import { filterMoviesAndSeries } from "utils";
 
 const trendingWeeklyUnfiltred = {
   page: 1,

@@ -5,7 +5,7 @@ import { filterMoviesAndSeries } from "utils";
 
 export const fetchTrending = () => {
   return async function fetchTrendingThunk(dispatch: AppDispatch) {
-    //Loading
+    // Loading
     dispatch({
       type: FETCH_TRENDING,
       payload: { loading: true, error: false },
@@ -17,6 +17,7 @@ export const fetchTrending = () => {
     res
       .then((response) => {
         if (response.data.results.length) {
+          // HTTP 200
           // Filter only movies & series
           const data = response.data.results.filter(filterMoviesAndSeries);
           dispatch({
@@ -26,17 +27,10 @@ export const fetchTrending = () => {
               error: false,
             },
           });
-        } else {
-          dispatch({
-            type: FETCH_TRENDING,
-            payload: {
-              error: true,
-              data: [],
-            },
-          });
         }
       })
       .catch(() => {
+        //HTTP ERROR CODES & 500
         dispatch({
           type: FETCH_TRENDING,
           payload: {

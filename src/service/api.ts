@@ -23,8 +23,8 @@ const apiInstance = () => {
   };
 
   // Search
-  const getSearchResults = (q = "") => {
-    return api.get("/search/multi", { params: { query: q } });
+  const getSearchResults = (params: object) => {
+    return api.get("/search/multi", { params });
   };
 
   return {

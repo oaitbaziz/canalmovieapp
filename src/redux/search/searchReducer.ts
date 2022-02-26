@@ -5,6 +5,9 @@ const initialState = {
   loading: false,
   error: false,
   notFound: false,
+  loadingMore: false,
+  totalPages: 0,
+  page: 1,
 };
 
 const searchReducer = (

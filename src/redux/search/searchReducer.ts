@@ -1,4 +1,4 @@
-import { FETCH_SEARCH } from "./searchTypes";
+import { FETCH_SEARCH, RESET_SEARCH } from "./searchTypes";
 
 const initialState = {
   data: [],
@@ -20,6 +20,9 @@ const searchReducer = (
         ...state,
         ...action.payload,
       };
+
+    case RESET_SEARCH:
+      return initialState;
     default:
       return state;
   }

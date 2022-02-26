@@ -6,7 +6,6 @@ interface ItemShape {
   id: number;
   name?: string;
   title?: string;
-  overview: string;
   backdrop_path: string;
 }
 interface Props {
@@ -22,7 +21,7 @@ const Slider: React.FC<Props> = ({ data }) => {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
-          {data.map(({ id, backdrop_path, name, title, overview }, index) => (
+          {data?.map(({ id, backdrop_path, name, title }, index) => (
             <div
               className={`carousel-item ${index === 0 ? "active" : ""}`}
               key={id}
@@ -32,38 +31,9 @@ const Slider: React.FC<Props> = ({ data }) => {
                 className="d-block w-100"
                 alt={name || title}
               />
-
-              <div className="carousel-caption d-none d-md-block">
-                <h5>{name || title}</h5>
-                <p>{overview}</p>
-              </div>
             </div>
           ))}
         </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#home-carousel"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#home-carousel"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import Home from "pages/Home";
 import Search from "pages/Search";
 import Notfound from "pages/Notfound";
 import Error from "pages/Error";
+import MovieDetails from "pages/MovieDetails";
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/search" component={Search} />
+          <Route exact path="/detail/:id" component={MovieDetails} />
           <Route exact path="/error" component={Error} />
           <Route component={Notfound} />
         </Switch>

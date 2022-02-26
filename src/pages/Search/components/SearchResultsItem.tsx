@@ -1,12 +1,12 @@
-import config from "config";
 import React from "react";
+import config from "config";
+import noCover from "assets/img/no_cover.jpg";
 
 interface Props {
   id: number;
   name?: string;
   title?: string;
   poster_path?: string | null;
-  media_type: string;
 }
 
 const SearchResultsItem: React.FC<Props> = ({
@@ -14,22 +14,15 @@ const SearchResultsItem: React.FC<Props> = ({
   poster_path,
   name,
   title,
-  media_type,
 }) => {
+  const src = poster_path ? `${config.cdnPosters}${poster_path}` : noCover;
   return (
-    <div className="col-md-2" key={id}>
-      <div className="card">
-        <div className="card-block">
-          {/* <h4 className="card-title">{name || title}</h4>
-          <h6 className="card-subtitle text-muted">{media_type}</h6> */}
-          <div className="d-block">
-            <img
-              src={`${config.cdnPosters}${poster_path}`}
-              alt={name || title}
-              className="card-img"
-            />
-          </div>
-        </div>
+    <div className="movie-card" key={id}>
+      <div className="movie-card__thumb">
+        <img src={src} alt={name || title} className="card-img" />
+      </div>
+      <div className="movie-card__content pt-1">
+        <div className="movie-card__title">{name || title}</div>
       </div>
     </div>
   );

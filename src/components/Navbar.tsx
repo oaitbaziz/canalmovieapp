@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import { RouteComponentProps, useLocation, withRouter } from "react-router-dom";
 
 interface Props {
   history: object;
 }
 
 const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
+  const location = useLocation();
   const [value, setValue] = useState("");
 
   const handleChange = (e: {
@@ -47,19 +48,21 @@ const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
                 </a>
               </li> */}
             </ul>
-            <form className="search-form d-flex" onSubmit={handleSubmit}>
-              <input
-                className="search form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                onChange={handleChange}
-                required
-              />
-              <button className="btn btn-outline-danger" type="submit">
-                Recherche
-              </button>
-            </form>
+            {location.pathname !== "/" && (
+              <form className="search-form d-flex" onSubmit={handleSubmit}>
+                <input
+                  className="search form-control me-2"
+                  type="search"
+                  placeholder="Rechercher un film, une série, une émission télévisée..."
+                  aria-label="Search"
+                  onChange={handleChange}
+                  required
+                />
+                <button className="btn btn-outline-danger" type="submit">
+                  Recherche
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </nav>

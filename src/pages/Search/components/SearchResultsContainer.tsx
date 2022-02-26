@@ -6,7 +6,6 @@ interface ItemShape {
   name?: string;
   title?: string;
   poster_path?: string | null;
-  media_type: string;
 }
 
 interface Props {
@@ -15,9 +14,9 @@ interface Props {
 
 const SearchResultsContainer: React.FC<Props> = ({ data }) => {
   return (
-    <div className="row gy-4">
-      {data.map((item) => (
-        <SearchResultsItem {...item} key={item.id} />
+    <div className="search-results-container">
+      {data?.map((item) => (
+        <SearchResultsItem {...item} />
       ))}
     </div>
   );

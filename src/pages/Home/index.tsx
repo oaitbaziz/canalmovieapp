@@ -5,6 +5,7 @@ import { fetchTrending } from "redux/home/homeActions";
 import { RootState } from "redux/store";
 import Loading from "components/Loading";
 import { useHistory } from "react-router-dom";
+import Searchbar from "./components/Searchbar";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,14 @@ const Home: React.FC = () => {
 
   return (
     <main>
-      <div className="home-page">
+      <div className="page-wrap home-page">
+        <div className="wlc-card">
+          <h2 className="wlc-card__title">
+            Retrouvez un choix illimités de films, séries et émissions
+            télévisées
+          </h2>
+          <Searchbar />
+        </div>
         <Slider data={data} />
       </div>
     </main>

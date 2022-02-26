@@ -7,7 +7,7 @@ export function fetchTrending() {
     //Loading
     dispatch({
       type: FETCH_TRENDING,
-      payload: { loading: true, error: false, notFound: false },
+      payload: { loading: true, error: false },
     });
 
     try {
@@ -20,14 +20,13 @@ export function fetchTrending() {
             payload: {
               data: response.data.results,
               error: false,
-              notFound: false,
             },
           });
         } else {
           dispatch({
             type: FETCH_TRENDING,
             payload: {
-              notFound: true,
+              error: true,
               data: [],
             },
           });

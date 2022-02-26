@@ -1,7 +1,13 @@
-import React from "react";
+import Heading from "components/Heading";
 
 const Error = () => {
-  return <div>Error</div>;
+  return (
+    <main>
+      <div className="container container--pt">
+        <Heading text="Une erreur inattendue est survenue !" />
+      </div>
+    </main>
+  );
 };
 
 export default Error;

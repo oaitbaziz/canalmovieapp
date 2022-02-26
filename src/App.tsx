@@ -1,13 +1,14 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "redux/store";
+
 import Navbar from "components/Navbar";
 import Home from "pages/Home";
 import Search from "pages/Search";
 import Notfound from "pages/Notfound";
 import Error from "pages/Error";
-import { Provider } from "react-redux";
-import store from "redux/store";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -21,6 +22,6 @@ function App() {
       </BrowserRouter>
     </Provider>
   );
-}
+};
 
 export default App;

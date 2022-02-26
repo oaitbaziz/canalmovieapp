@@ -3,6 +3,7 @@ import { useQuery } from "hooks";
 import apiInstance from "service/api";
 import SearchResultsContainer from "./components/SearchResultsContainer";
 import { searchResults } from "data";
+import Heading from "components/Heading";
 
 const Search: React.FC = () => {
   let q = useQuery();
@@ -17,9 +18,7 @@ const Search: React.FC = () => {
   return (
     <div className="search-page">
       <div className="container">
-        <p className="h1 pb-5">
-          Vos résultats de recherche pour {`"${q.get("q")}"`}
-        </p>
+        <Heading text={`Vos résultats de recherche pour "${q.get("q")}"`} />
         <SearchResultsContainer data={data} />
       </div>
     </div>

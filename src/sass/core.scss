@@ -1,13 +1,19 @@
 // Override default variables before the import
 // $body-bg: #000;
 
-// Nav
+// Import Bootstrap and its default variables
+@import "~bootstrap/scss/bootstrap.scss";
 
-.navbar {
-  backdrop-filter: saturate(180%) blur(20px);
+// Utilities
+.container {
+  &-pt {
+    padding-top: 7rem;
+  }
 }
+// Nav
 .nav-bg {
   background-color: rgba(#000000, 0.2);
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 // Home
@@ -21,5 +27,20 @@
   padding: 7rem 0;
 }
 
-// Import Bootstrap and its default variables
-@import "~bootstrap/scss/bootstrap.scss";
+// Loading
+.loading {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(#000000, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+
+  &__content {
+    margin: 0 auto;
+    width: 2rem;
+    height: 2rem;
+  }
+}

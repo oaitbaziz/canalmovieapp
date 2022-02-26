@@ -1,44 +1,45 @@
 import { AppDispatch } from "redux/store";
-import { FETCH_TRENDING } from "./homeTypes";
-import apiInstance from "service/api";
 import { filterMoviesAndSeries } from "utils";
+import { FETCH_SEARCH } from "./searchTypes";
+import apiInstance from "service/api";
 
-export const fetchTrending = () => {
-  return async function fetchTrendingThunk(dispatch: AppDispatch) {
+// Action generator
+export const fetchSearch = (query: string) => {
+  return function fetchSearchThunk(dispatch: AppDispatch) {
     //Loading
     dispatch({
-      type: FETCH_TRENDING,
-      payload: { loading: true, error: false },
+      type: FETCH_SEARCH,
+      payload: { loading: true, error: false, notFound: false },
     });
-
-    // Fetch data
-    const res = apiInstance.getWeeklyTrending();
-
+    // Get search results
+    const res = apiInstance.getSearchResults(query);
     res
       .then((response) => {
         if (response.data.results.length) {
           // Filter only movies & series
           const data = response.data.results.filter(filterMoviesAndSeries);
           dispatch({
-            type: FETCH_TRENDING,
+            type: FETCH_SEARCH,
             payload: {
               data,
               error: false,
+              notFound: false,
             },
           });
         } else {
           dispatch({
-            type: FETCH_TRENDING,
+            type: FETCH_SEARCH,
             payload: {
-              error: true,
+              notFound: true,
               data: [],
             },
           });
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("search error: ", error);
         dispatch({
-          type: FETCH_TRENDING,
+          type: FETCH_SEARCH,
           payload: {
             error: true,
           },
@@ -46,7 +47,7 @@ export const fetchTrending = () => {
       })
       .finally(() => {
         dispatch({
-          type: FETCH_TRENDING,
+          type: FETCH_SEARCH,
           payload: {
             loading: false,
           },

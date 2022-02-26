@@ -1,24 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "redux/store";
 import { useQuery } from "hooks";
-import apiInstance from "service/api";
+
+import { fetchSearch } from "redux/search/searchActions";
 import SearchResultsContainer from "./components/SearchResultsContainer";
-import { searchResults } from "data";
 import Heading from "components/Heading";
+import Loading from "components/Loading";
 
 const Search: React.FC = () => {
-  let q = useQuery();
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const q = useQuery();
+  const query = q.get("q") || "";
+
+  const { data, loading, error, notFound } = useSelector(
+    (state: RootState) => state.search
+  );
+
+  const fetchData = useCallback(() => {
+    dispatch(fetchSearch(query));
+  }, [dispatch, query]);
 
   useEffect(() => {
-    let query = q.get("q") || undefined;
-    apiInstance.getSearchResults(query);
-  });
+    fetchData();
+  }, [fetchData]);
 
-  const data = searchResults;
+  if (error) {
+    history.push("/error");
+    return <></>;
+  }
+
+  if (loading) {
+    return (
+      <main>
+        <Loading />
+      </main>
+    );
+  }
 
   return (
     <div className="search-page">
       <div className="container">
-        <Heading text={`Vos résultats de recherche pour "${q.get("q")}"`} />
+        {notFound ? (
+          <Heading text="Aucun résultat n'est disponible pour votre recherche" />
+        ) : (
+          <Heading text={`Vos résultats de recherche pour "${q.get("q")}"`} />
+        )}
         <SearchResultsContainer data={data} />
       </div>
     </div>

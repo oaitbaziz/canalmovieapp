@@ -1,17 +1,18 @@
-import { FETCH_TRENDING } from "./homeTypes";
+import { FETCH_SEARCH } from "./searchTypes";
 
 const initialState = {
   data: [],
   loading: false,
   error: false,
+  notFound: false,
 };
 
-const homeReducer = (
+const searchReducer = (
   state = initialState,
-  action: { type: string; payload: object }
+  action: { type: string; payload: any }
 ) => {
   switch (action.type) {
-    case FETCH_TRENDING:
+    case FETCH_SEARCH:
       return {
         ...state,
         ...action.payload,
@@ -21,4 +22,4 @@ const homeReducer = (
   }
 };
 
-export default homeReducer;
+export default searchReducer;

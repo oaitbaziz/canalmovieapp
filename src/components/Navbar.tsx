@@ -54,9 +54,10 @@ const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
                 placeholder="Search"
                 aria-label="Search"
                 onChange={handleChange}
+                required
               />
               <button className="btn btn-outline-danger" type="submit">
-                Search
+                Recherche
               </button>
             </form>
           </div>

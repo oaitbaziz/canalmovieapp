@@ -10,13 +10,13 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const fetchData = useCallback(() => {
-    dispatch(fetchTrending());
-  }, [dispatch]);
-
   const { loading, error, data } = useSelector(
     (state: RootState) => state.home
   );
+
+  const fetchData = useCallback(() => {
+    dispatch(fetchTrending());
+  }, [dispatch]);
 
   useEffect(() => {
     fetchData();

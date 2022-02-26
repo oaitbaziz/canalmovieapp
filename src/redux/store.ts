@@ -2,8 +2,12 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 
 import homeReducer from "./home/homeReducer";
+import searchReducer from "./search/searchReducer";
 
-const rootReducer = combineReducers({ home: homeReducer });
+const rootReducer = combineReducers({
+  home: homeReducer,
+  search: searchReducer,
+});
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

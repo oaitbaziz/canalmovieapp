@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useQuery } from "hooks";
+import React, { useState, useEffect } from "react";
 import { RouteComponentProps, useLocation, withRouter } from "react-router-dom";
 
 interface Props {
@@ -6,8 +7,13 @@ interface Props {
 }
 
 const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
+  const query = useQuery().get("q");
   const location = useLocation();
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (query) setValue(query);
+  }, [query]);
 
   const handleChange = (e: {
     target: { value: React.SetStateAction<string> };

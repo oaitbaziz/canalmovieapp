@@ -233,6 +233,7 @@ $input-color: #212529;
 
   &:hover {
     transform: scale(1.1);
+    z-index: 500;
   }
 
   &__thumb {
@@ -251,6 +252,12 @@ $input-color: #212529;
   &__content {
     font-size: 0.8rem;
     color: lighten($body-color, 0.7);
+    // Hide text taking more than 1 line
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
 }
 

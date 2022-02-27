@@ -19,6 +19,7 @@ const Slider: React.FC<Props> = ({ data }) => {
         id="home-carousel"
         className="carousel slide carousel-fade"
         data-bs-ride="carousel"
+        data-bs-interval="2500"
       >
         <div className="carousel-inner">
           {data?.map(({ id, backdrop_path, name, title }, index) => (

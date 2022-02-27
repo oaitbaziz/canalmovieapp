@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "./sass/core.scss";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./sass/core.scss";
 
 import App from "./App";
 

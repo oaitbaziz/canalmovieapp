@@ -1,14 +1,16 @@
 import axios from "axios";
 import config from "config";
 
-const { baseURL, apiKey } = config;
+const { baseURL } = config;
+const language = navigator.language;
 
 const apiInstance = () => {
   const headers = {
     "Content-Type": "application/json",
   };
   const params = {
-    api_key: apiKey,
+    // api_key: apiKey,
+    language,
   };
 
   const api = axios.create({

@@ -95,14 +95,29 @@ export const fetchSeachPage = (query: string) => {
           });
         }
       })
-      .catch(() => {
-        // // HTTP ERROR CODES & 500
-        dispatch({
-          type: FETCH_SEARCH,
-          payload: {
-            error: true,
-          },
-        });
+
+      .catch((error) => {
+        console.log("error?.response?.status", error?.response?.status);
+        switch (error?.response?.status) {
+          // HTTP 404, 422, 500 defaults to server error
+          case 404:
+          case 422:
+            dispatch({
+              type: FETCH_SEARCH,
+              payload: {
+                data: [],
+                notFound: true,
+              },
+            });
+            break;
+          default:
+            dispatch({
+              type: FETCH_SEARCH,
+              payload: {
+                error: true,
+              },
+            });
+        }
       })
       .finally(() => {
         dispatch({

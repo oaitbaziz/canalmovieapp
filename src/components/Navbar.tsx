@@ -7,9 +7,9 @@ interface Props {
 }
 
 const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
+  const [value, setValue] = useState("");
   const query = useQuery().get("q");
   const location = useLocation();
-  const [value, setValue] = useState("");
 
   useEffect(() => {
     if (query) setValue(query);
@@ -65,6 +65,7 @@ const Navbar: React.FC<Props & RouteComponentProps> = ({ history }) => {
                     aria-label="Search"
                     onChange={handleChange}
                     required
+                    value={value}
                   />
                   <button className="btn btn-outline-danger" type="submit">
                     Recherche

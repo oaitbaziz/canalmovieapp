@@ -56,7 +56,7 @@ const Search: React.FC = () => {
         <div className="container" ref={infiniteRef}>
           <h1 className="h2 pb-2 pb-md-3">
             {notFound ? (
-              <Heading text="L'élément que vous cherchez n'existe pas" />
+              <Heading text="Aucun résultat n'est disponible pour votre recherche" />
             ) : (
               <Heading text={`Votre résultat de recherche pour "${query}"`} />
             )}

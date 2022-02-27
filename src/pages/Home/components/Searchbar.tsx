@@ -75,6 +75,7 @@ const Searchbar: React.FC = () => {
             placeholder="Rechercher un film, une série, une émission télévisée..."
             aria-label="search"
             onChange={handleChange}
+            required
           />
           {data?.length ? (
             <div className="autocomplete__list">

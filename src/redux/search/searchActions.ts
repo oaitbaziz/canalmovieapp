@@ -29,6 +29,15 @@ export const fetchSearch = (query: string) => {
               notFound: false,
             },
           });
+        } else {
+          // Fix that 404 looking like a 200...
+          dispatch({
+            type: FETCH_SEARCH,
+            payload: {
+              data: [],
+              notFound: true,
+            },
+          });
         }
       })
       .catch((error) => {

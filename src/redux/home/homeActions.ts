@@ -30,7 +30,7 @@ export const fetchTrending = () => {
         }
       })
       .catch(() => {
-        //HTTP ERROR CODES & 500
+        // HTTP ERROR CODES & 500
         dispatch({
           type: FETCH_TRENDING,
           payload: {

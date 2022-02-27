@@ -61,6 +61,7 @@ export const fetchSearch = (query: string) => {
   };
 };
 
+// Handles loading pages on scroll
 export const fetchSeachPage = (query: string) => {
   return function fetchSearchPageThunk(
     dispatch: AppDispatch,
@@ -74,7 +75,7 @@ export const fetchSeachPage = (query: string) => {
     const state = getState();
     const { search } = state;
 
-    // Get search results
+    // Get search results of n page
     const res = apiInstance.getSearchResults({ query, page: search.page });
     res
       .then((response) => {
@@ -94,8 +95,14 @@ export const fetchSeachPage = (query: string) => {
           });
         }
       })
-      .catch((error) => {
-        // Handle 500
+      .catch(() => {
+        // // HTTP ERROR CODES & 500
+        dispatch({
+          type: FETCH_SEARCH,
+          payload: {
+            error: true,
+          },
+        });
       })
       .finally(() => {
         dispatch({

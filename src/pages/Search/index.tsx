@@ -51,14 +51,16 @@ const Search: React.FC = () => {
   }
 
   return (
-    <div className="page-wrap search-page">
-      <div className="container" ref={infiniteRef}>
-        <h1 className="h2 pb-2 pb-md-3">
-          Votre résultat de recherche pour {`"${query}"`}
-        </h1>
-        <SearchResultsContainer data={data} />
+    <main>
+      <div className="page-wrap search-page">
+        <div className="container" ref={infiniteRef}>
+          <h1 className="h2 pb-2 pb-md-3">
+            Votre résultat de recherche pour {`"${query}"`}
+          </h1>
+          <SearchResultsContainer data={data} />
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 

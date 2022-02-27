@@ -14,7 +14,7 @@ export const fetchDetails = (id: string, type: string) => {
     const res = apiInstance.getDetails({ id }, type);
     res
       .then((response) => {
-        if ("id" in response.data) {
+        if (Object.keys(response.data).length) {
           // HTTP 200
           dispatch({
             type: FETCH_DETAILS,
@@ -23,25 +23,27 @@ export const fetchDetails = (id: string, type: string) => {
               error: false,
             },
           });
-        } else {
-          // HTTP 404
-          dispatch({
-            type: FETCH_DETAILS,
-            payload: {
-              data: [],
-              notFound: false,
-            },
-          });
         }
       })
-      .catch(() => {
-        //HTTP ERROR CODES & 500
-        dispatch({
-          type: FETCH_DETAILS,
-          payload: {
-            error: true,
-          },
-        });
+      .catch((error) => {
+        switch (error?.response?.status) {
+          case 404:
+            dispatch({
+              type: FETCH_DETAILS,
+              payload: {
+                data: [],
+                notFound: true,
+              },
+            });
+            break;
+          default:
+            dispatch({
+              type: FETCH_DETAILS,
+              payload: {
+                error: true,
+              },
+            });
+        }
       })
       .finally(() => {
         dispatch({

@@ -13,7 +13,7 @@ interface ItemShape {
   vote_average: number;
 }
 
-const Searchbar: React.FC = () => {
+const Searchbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [value, setValue] = useState("");
@@ -25,7 +25,7 @@ const Searchbar: React.FC = () => {
   // Searchbar input ref
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Autofocus input field
+  // Autofocus input
   useEffect(() => {
     inputRef.current?.focus();
 

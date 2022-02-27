@@ -80,8 +80,11 @@ const Searchbar = () => {
           {data?.length ? (
             <div className="autocomplete__list">
               {bestResults?.map((item: ItemShape) => (
-                <Link to={`/details/${item.media_type}/${item.id}`}>
-                  <div className="autocomplete__item" key={item.id}>
+                <Link
+                  to={`/details/${item.media_type}/${item.id}`}
+                  key={item.id}
+                >
+                  <div className="autocomplete__item">
                     <p className="fw-bold d-inline">
                       {item.name || item.title}
                     </p>{" "}

@@ -17,7 +17,7 @@ const SearchResultsContainer: React.FC<Props> = ({ data }) => {
   return (
     <div className="search-results-container">
       {data?.map((item) => (
-        <SearchResultsItem {...item} />
+        <SearchResultsItem {...item} key={item.id} />
       ))}
     </div>
   );

@@ -25,7 +25,7 @@ const Search: React.FC = () => {
 
   const infiniteRef = useInfiniteScroll<HTMLDivElement>({
     loading: loadingMore,
-    hasNextPage: page <= totalPages,
+    hasNextPage: page < totalPages,
     onLoadMore: handleLoadMore,
   });
 

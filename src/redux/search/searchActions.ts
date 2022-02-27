@@ -79,7 +79,7 @@ export const fetchSeachPage = (query: string) => {
     const { search } = state;
 
     // Get search results of n page
-    const res = apiInstance.getSearchResults({ query, page: search.page });
+    const res = apiInstance.getSearchResults({ query, page: search.page + 1 });
     res
       .then((response) => {
         if (response.data.results.length) {
@@ -90,7 +90,7 @@ export const fetchSeachPage = (query: string) => {
             type: FETCH_SEARCH,
             payload: {
               data: [...search.data, ...data],
-              page: search.page + 1,
+              page: response.data.page,
               totalPages: response.data.total_pages,
               error: false,
               notFound: false,

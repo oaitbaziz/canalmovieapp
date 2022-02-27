@@ -93,21 +93,29 @@ const MovieDetails: React.FC = () => {
                 <h1 className="movie-info__title">{name || title}</h1>
                 <div className="movie-info__type">
                   <span>{mediaType === "movie" ? "Film" : "Série"}</span>
-                  <span>{year}</span>
-                  <span>
-                    {genres
-                      ?.map((genre: { name: string }) => genre.name)
-                      .join(", ")}
-                  </span>
+                  {year ? <span>{year}</span> : null}
+                  {genres ? (
+                    <span>
+                      {genres
+                        ?.map((genre: { name: string }) => genre.name)
+                        .join(", ")}
+                    </span>
+                  ) : null}
                   {vote_average ? <span>{`${vote_average * 10}%`}</span> : null}
                 </div>
-                <div className="movie-info__subtitle">Synopsis</div>
-                <p className="movie-info__text">{overview}</p>
-                <div className="movie-info__subtitle-sm">
-                  {created_by
-                    ?.map((creator: { name: string }) => creator.name)
-                    .join(", ")}
-                </div>
+                {overview ? (
+                  <>
+                    <div className="movie-info__subtitle">Synopsis</div>
+                    <p className="movie-info__text">{overview}</p>
+                  </>
+                ) : null}
+                {created_by ? (
+                  <div className="movie-info__subtitle-sm">
+                    {created_by
+                      ?.map((creator: { name: string }) => creator.name)
+                      .join(", ")}
+                  </div>
+                ) : null}
               </div>
             </div>
           )}

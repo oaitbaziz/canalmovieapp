@@ -83,7 +83,7 @@ const MovieDetails: React.FC = () => {
 
         <div className="container">
           {notFound ? (
-            <Heading text="Aucun résultat n'est disponible pour votre recherche" />
+            <Heading text="L'élément que vous recherchez n'existe pas" />
           ) : (
             <div className="movie-info">
               <div className="movie-info__thumb">
